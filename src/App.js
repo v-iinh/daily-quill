@@ -6,9 +6,9 @@ function App() {
   const [items, setItems] = useState([]);
   const [active, setActive] = useState(1);
   const [category, setCategory] = useState('general');
-
+  const key = '' // CHANGE TO YOUR API KEY
   const fetchNews = useCallback(() => {
-    fetch(`https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=3535956e534541ab91ccb9963efb8951`)
+    fetch(`https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${key}`)
       .then((res) => res.json())
       .then((data) => {
         const filteredItems = data.articles.filter((item) => item.urlToImage !== null);
@@ -24,7 +24,7 @@ function App() {
     if (event.key === 'Enter') {
       const searchValue = event.target.value.trim();
       if (searchValue !== '') {
-        fetch(`https://newsapi.org/v2/everything?q=${searchValue}&apiKey=3535956e534541ab91ccb9963efb8951`)
+        fetch(`https://newsapi.org/v2/everything?q=${searchValue}&apiKey=${key}`)
           .then((res) => res.json())
           .then((data) => {
             const filteredItems = data.articles.filter((item) => item.urlToImage !== null);
